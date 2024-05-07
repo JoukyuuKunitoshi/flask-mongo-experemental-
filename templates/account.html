@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    {% include '/components/header.html' %}
+    {%if username is defined%}
+        <p>Здравствуйте,{{username}}, Вы теперь стукач, Вам нет прощения</p>
+        <table border="">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Номер</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in docs %}
+                    <tr>
+                        <td>{{ i["_id"] }}</td>
+                        <td>{{ i["number"] }}</td>
+                        <td>{{ i["description"] }}</td>
+                        <td>{{ i["status"] }}</td>
+                        <td>{{ i["date"] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {%endif%}
+    <br>
+    <a href="/make_ticket"><button>Нажмите сюда, чтобы подать новое заявление.</button></a> 
+    <a href="/"><button>Нажмите сюда, чтобы вернутсья в главное меню.</button></a> 
+    <a href="/logout"><button>Нажмите сюда, чтобы выйти из аккаунта.</button></a> 
+    {% include '/components/footer.html' %}   
+</body>
+</html>

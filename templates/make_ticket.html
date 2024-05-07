@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Making Ticket</title>
+</head>
+<body>
+    {% include '/components/header.html' %}
+    <form action="/make_ticket", method="POST">
+        <label for="number">number</label>
+        <input type="text" name="number" id="number">
+        <label for="description">description</label>
+        <input type="text" name="description" id="text">
+        <button type="submit">Подвердить</button>
+    </form>
+    
+    {% include '/components/footer.html' %}
+</body>
+</html>

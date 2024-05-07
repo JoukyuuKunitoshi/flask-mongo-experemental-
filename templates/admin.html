@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>adminpanel</title>
+</head>
+<body>
+    {% include '/components/header.html' %}
+        <p>Ничесе, ты чо, админ?</p>
+        <table border="">
+            <thead>
+                <tr>
+                    <th>Имя пользователя</th>
+                    <th>ID</th>
+                    <th>Номер</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in docs %}
+                    <tr>
+                        <td>{{ i["username"] }}</td>
+                        <td>{{ i["_id"] }}</td>
+                        <td>{{ i["number"] }}</td>
+                        <td>{{ i["description"] }}</td>
+                        <td>{{ i["status"] }}</td>
+                        <td>{{ i["date"] }}</td>
+                        <td><form action="/admin" method="POST">
+        
+                            <select name="select" id="todo">
+                                <option value="done">Готово</option>
+                                <option value="reject">Отклонить</option>
+                                <option value="delete">Удалить</option>
+                                
+    
+                              </select>
+                                <input id="id", name="_id", value="{{i['_id']}}" type="hidden">
+                            
+                            <button type="submit">Изменить</button>
+                        </form></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <br>
+    <a href="/make_ticket"><button>Нажмите сюда, чтобы подать новое заявление.</button></a> 
+    <a href="/"><button>Нажмите сюда, чтобы вернутсья в главное меню.</button></a> 
+    {% include '/components/footer.html' %}
+</body>
+</html>
